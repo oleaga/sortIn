@@ -1,17 +1,17 @@
 package com.example.sortIn;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class CSort {
     File fIn;
     File fOut;
     boolean isInt;
     boolean isAsc;
-    int before;
-    int pos;
+    long before;
+    long pos;
 
     boolean compare(String str1, String str2){
+        // compare is return result of "str1 > str2"
         int n1 = 0, n2 = 0;
         if(isInt){
 
@@ -43,7 +43,7 @@ public class CSort {
         }
         if(n1 > n2) return true;
         return false;
-    }
+    }// compare is return result of "str1 > str2"
 
     public void setParams(File fileIn, File fileOut, boolean IsInt, boolean IsAsc){
         fIn = fileIn;
@@ -64,10 +64,17 @@ public class CSort {
 
         if((str1 = readLine(fInStream))=="") throw new Exception();
         fOutStream.writeBytes(str1);
-        //fOutStream.writeUTF("\n");
+        fOutStream.writeBytes("\n");
 
         while((str2 = readLine(fInStream))!="" && i<200){
-            if(compare(str2, str1))
+            if(compare(str1, str2)){
+                before = fOutStream.getFilePointer();
+
+            }
+            else{
+                fOutStream.writeBytes(str2);
+            }
+
             ++i;
         }
     }

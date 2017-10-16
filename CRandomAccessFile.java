@@ -10,6 +10,16 @@ public class CRandomAccessFile extends RandomAccessFile {
     private boolean EOF;
     private String mode;
 
+    private void checkLastString(int chrCode) throws IOException{
+        long pos = this.getFilePointer();
+        chrCode = this.read();
+        if(chrCode == -1 && mode.equals("r")){
+            ///
+            lastStrIsEmpty = true;
+        }
+        else this.seek(pos);
+    }
+
     public CRandomAccessFile(File file, String Mode) throws FileNotFoundException{
         //public RandomAccessFile(File file, String mode) throws FileNotFoundException
 
@@ -27,7 +37,7 @@ public class CRandomAccessFile extends RandomAccessFile {
     public String ReadLine() throws IOException{
 
         EOF = false;
-        int chrCode = 0;
+        int chrCode;
         String str = "";
         long pos;
 
@@ -52,23 +62,11 @@ public class CRandomAccessFile extends RandomAccessFile {
             chrCode = this.read();
             if(chrCode != 10) this.seek(pos);
 
-            pos = this.getFilePointer();
-            chrCode = this.read();
-            if(chrCode == -1 && mode.equals("r")){
-                ///
-                lastStrIsEmpty = true;
-            }
-            else this.seek(pos);
+            checkLastString(chrCode);
         }
         else{
             if(chrCode == 10){
-                pos = this.getFilePointer();
-                chrCode = this.read();
-                if(chrCode == -1 && mode.equals("r")){
-                    ///
-                    lastStrIsEmpty = true;
-                }
-                else this.seek(pos);
+                checkLastString(chrCode);
             }
         }
         return str;

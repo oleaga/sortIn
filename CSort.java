@@ -174,9 +174,6 @@ public class CSort {
         if(chrCode == 10) {
             CR[0] = 10;
         }
-        System.out.print("---Separator is \'" + CR[0]);
-        if(CR.length == 2) System.out.print("\', \'" + CR[1]);
-        System.out.println("\' ---");
 
         f.seek(pos);
         return CR;

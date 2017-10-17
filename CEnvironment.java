@@ -15,7 +15,7 @@ public class CEnvironment{
 
         String Path=System.getProperty("user.dir");
 
-        System.out.println("---" + Path + "---");
+        //System.out.println("---" + Path + "---");
         String fInName = Path + "\\in.txt";
         String fOutName = Path + "\\out.txt";
         isAsc = true;

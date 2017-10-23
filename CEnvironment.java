@@ -19,7 +19,7 @@ public class CEnvironment{
         String fInName = Path + "\\in.txt";
         String fOutName = Path + "\\out.txt";
         isAsc = true;
-        isInt = false;
+        isInt = true;
 
         switch (paramNum){
             case 4:{
@@ -71,6 +71,6 @@ public class CEnvironment{
     public void goSort() throws Exception{
         CSort sort = new CSort();
         sort.setParams(fIn,fOut,isInt,isAsc);
-        sort.Insertion();
+        sort.Insertion2();
     }
 }
